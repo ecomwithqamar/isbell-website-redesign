@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISBELL — Colágeno Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#FAF6F1;
+  --ivory-deep:#F1E9DF;
+  --teal:#1F4D47;
+  --teal-deep:#143632;
+  --terracotta:#C97B63;
+  --terracotta-deep:#B0644C;
+  --sage:#E8EDE4;
+  --ink:#1C1C1A;
+  --ink-soft:#5B5650;
+  --line:#E2D9CC;
+  --radius:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--ivory);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+
+/* ===== ANNOUNCEMENT BAR ===== */
+.announce{
+  background:var(--teal-deep);
+  color:#fff;
+  text-align:center;
+  font-size:0.74rem;
+  font-weight:500;
+  letter-spacing:0.03em;
+  padding:9px 16px;
+}
+.announce span{color:var(--terracotta-deep);background:#fff;border-radius:20px;padding:1px 8px;font-weight:600;margin:0 2px;}
+
+/* ===== HEADER ===== */
+.header{
+  background:var(--ivory);
+  border-bottom:1px solid var(--line);
+  padding:18px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:50;
+}
+.logo{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:1.5rem;
+  letter-spacing:0.06em;
+  color:var(--teal-deep);
+  display:flex;align-items:center;gap:10px;
+}
+.logo .mark{
+  width:30px;height:30px;border-radius:50%;
+  background:var(--teal-deep);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.logo .mark::before{
+  content:'';width:9px;height:9px;border-radius:50%;background:var(--terracotta);
+  position:absolute;top:6px;left:7px;
+}
+.logo .mark::after{
+  content:'';width:9px;height:9px;border-radius:50%;background:#fff;
+  position:absolute;bottom:6px;right:7px;
+}
+.nav{display:flex;gap:36px;align-items:center;}
+.nav a{font-size:0.86rem;font-weight:500;color:var(--ink);transition:color .15s;}
+.nav a:hover{color:var(--terracotta-deep);}
+.header-icons{display:flex;gap:20px;align-items:center;}
+.icon-btn{width:20px;height:20px;color:var(--ink);cursor:pointer;}
+.icon-btn svg{width:100%;height:100%;}
+.cart-badge{
+  position:relative;
+}
+.cart-badge::after{
+  content:'1';
+  position:absolute;top:-7px;right:-8px;
+  background:var(--terracotta-deep);color:#fff;
+  font-size:0.6rem;font-weight:700;
+  width:15px;height:15px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* ===== HERO ===== */
+.hero{
+  background:linear-gradient(135deg, var(--sage) 0%, var(--ivory) 55%, var(--ivory-deep) 100%);
+  padding:0 40px;
+}
+.hero-grid{
+  max-width:1240px;margin:0 auto;
+  display:grid;grid-template-columns:1.05fr 0.95fr;
+  gap:60px;align-items:center;
+  min-height:560px;
+  padding:50px 0;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--teal-deep);margin-bottom:22px;
+}
+.hero-eyebrow::before{content:'';width:16px;height:1.5px;background:var(--terracotta);}
+.hero h1{
+  font-family:'Fraunces',serif;
+  font-size:clamp(2.6rem,4.4vw,3.6rem);
+  font-weight:600;
+  line-height:1.06;
+  color:var(--teal-deep);
+  margin-bottom:20px;
+  letter-spacing:-0.01em;
+}
+.hero h1 em{font-style:italic;color:var(--terracotta-deep);font-weight:500;}
+.hero p.lead{
+  font-size:1rem;color:var(--ink-soft);line-height:1.7;
+  max-width:430px;margin-bottom:32px;
+}
+.hero-cta-row{display:flex;gap:14px;align-items:center;margin-bottom:28px;flex-wrap:wrap;}
+.btn-primary{
+  background:var(--teal-deep);color:#fff;border:none;cursor:pointer;
+  font-family:'Inter',sans-serif;font-weight:600;font-size:0.86rem;
+  padding:15px 32px;border-radius:8px;letter-spacing:0.02em;
+  transition:background .2s, transform .15s;
+  display:inline-block;
+}
+.btn-primary:hover{background:var(--teal);transform:translateY(-1px);}
+.btn-ghost{
+  background:transparent;color:var(--teal-deep);border:1.5px solid var(--teal-deep);
+  font-family:'Inter',sans-serif;font-weight:600;font-size:0.86rem;
+  padding:14px 28px;border-radius:8px;cursor:pointer;
+  transition:background .2s;
+}
+.btn-ghost:hover{background:rgba(31,77,71,0.06);}
+.hero-stats{display:flex;gap:32px;}
+.hero-stat{display:flex;flex-direction:column;gap:2px;}
+.hero-stat b{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--teal-deep);font-weight:600;}
+.hero-stat span{font-size:0.72rem;color:var(--ink-soft);}
+
+/* Hero product visual */
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center;height:480px;}
+.visual-ring{
+  width:380px;height:380px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #fff 0%, var(--sage) 70%, var(--ivory-deep) 100%);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 30px 70px -20px rgba(31,77,71,0.25);
+  position:relative;
+}
+.visual-ring::before{
+  content:'';position:absolute;inset:-14px;border-radius:50%;
+  border:1.5px dashed rgba(31,77,71,0.18);
+}
+/* jar illustration */
+.jar{position:relative;width:160px;}
+.jar-lid{
+  width:170px;height:46px;
+  background:linear-gradient(180deg,#2A5C54,var(--teal-deep));
+  border-radius:14px 14px 4px 4px;
+  margin:0 auto;position:relative;z-index:2;
+  box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+.jar-lid::after{
+  content:'';position:absolute;top:6px;left:50%;transform:translateX(-50%);
+  width:60px;height:3px;background:rgba(255,255,255,0.25);border-radius:3px;
+}
+.jar-body{
+  width:160px;height:210px;margin:-6px auto 0;
+  background:linear-gradient(160deg,#ffffff 0%, #f4f4f4 50%, #ffffff 100%);
+  border-radius:8px;position:relative;z-index:1;
+  box-shadow:0 18px 40px -10px rgba(0,0,0,0.18), inset 0 0 0 1px rgba(0,0,0,0.04);
+  overflow:hidden;
+}
+.jar-label{
+  position:absolute;top:38px;left:8px;right:8px;bottom:46px;
+  background:var(--teal-deep);
+  border-radius:4px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:4px;padding:10px;
+}
+.jar-label .brand{font-family:'Fraunces',serif;color:#fff;font-size:0.92rem;font-weight:600;letter-spacing:0.04em;}
+.jar-label .sub{color:var(--terracotta);font-size:0.52rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
+.jar-label .badge-row{display:flex;gap:4px;margin-top:6px;}
+.jar-label .dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.4);}
+.jar-base-text{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-size:0.5rem;color:#999;letter-spacing:0.06em;font-weight:600;}
+.float-chip{
+  position:absolute;background:#fff;border-radius:10px;
+  box-shadow:0 10px 26px -8px rgba(0,0,0,0.15);
+  padding:9px 14px;display:flex;align-items:center;gap:8px;
+  font-size:0.72rem;font-weight:600;color:var(--teal-deep);
+}
+.float-chip svg{width:16px;height:16px;color:var(--terracotta-deep);flex-shrink:0;}
+.chip-1{top:30px;left:-10px;}
+.chip-2{bottom:60px;right:-26px;}
+.chip-3{top:130px;right:-40px;}
+
+/* ===== TRUST STRIP ===== */
+.trust-strip{
+  background:var(--teal-deep);
+  padding:18px 40px;
+}
+.trust-inner{
+  max-width:1240px;margin:0 auto;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:22px;
+}
+.trust-item{
+  display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.92);
+  font-size:0.78rem;font-weight:500;
+}
+.trust-item svg{width:18px;height:18px;color:var(--terracotta);flex-shrink:0;}
+
+/* ===== SECTION SHARED ===== */
+.section{padding:84px 40px;}
+.section-inner{max-width:1240px;margin:0 auto;}
+.section-head{max-width:560px;margin-bottom:52px;}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+.eyebrow{
+  font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--terracotta-deep);margin-bottom:12px;
+}
+.section-title{
+  font-family:'Fraunces',serif;font-size:clamp(1.8rem,3vw,2.5rem);
+  font-weight:600;color:var(--teal-deep);line-height:1.15;margin-bottom:14px;
+}
+.section-body{font-size:0.92rem;color:var(--ink-soft);line-height:1.7;}
+
+/* ===== BENEFITS (molecular grid) ===== */
+.benefits-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+}
+.benefit-card{
+  background:var(--ivory);padding:36px 28px;position:relative;
+  transition:background .2s;
+}
+.benefit-card:hover{background:#fff;}
+.benefit-icon{
+  width:46px;height:46px;border-radius:50%;
+  background:var(--sage);display:flex;align-items:center;justify-content:center;
+  margin-bottom:18px;
+}
+.benefit-icon svg{width:22px;height:22px;color:var(--teal-deep);}
+.benefit-title{font-weight:600;font-size:0.95rem;color:var(--teal-deep);margin-bottom:8px;}
+.benefit-text{font-size:0.82rem;color:var(--ink-soft);line-height:1.6;}
+
+/* ===== FEATURED PRODUCT ===== */
+.feat-section{background:var(--sage);}
+.feat-grid{
+  display:grid;grid-template-columns:0.85fr 1.15fr;gap:64px;align-items:center;
+}
+.feat-visual{
+  background:#fff;border-radius:20px;padding:50px;
+  display:flex;align-items:center;justify-content:center;
+  min-height:420px;position:relative;
+  box-shadow:0 20px 50px -20px rgba(31,77,71,0.12);
+}
+.feat-visual .jar-body{width:190px;height:250px;}
+.feat-visual .jar-lid{width:200px;height:54px;}
+.feat-tag{
+  position:absolute;top:24px;right:24px;
+  background:var(--terracotta-deep);color:#fff;
+  font-size:0.68rem;font-weight:700;letter-spacing:0.04em;
+  padding:6px 14px;border-radius:20px;
+}
+.feat-content .eyebrow{margin-bottom:10px;}
+.feat-content h2{
+  font-family:'Fraunces',serif;font-size:clamp(1.9rem,3.2vw,2.6rem);
+  color:var(--teal-deep);font-weight:600;line-height:1.12;margin-bottom:16px;
+}
+.feat-content .desc{font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:26px;max-width:480px;}
+.feat-list{display:flex;flex-direction:column;gap:13px;margin-bottom:30px;}
+.feat-list li{display:flex;align-items:flex-start;gap:11px;font-size:0.86rem;color:var(--ink);}
+.feat-list svg{width:18px;height:18px;color:var(--terracotta-deep);flex-shrink:0;margin-top:1px;}
+.price-row{display:flex;align-items:baseline;gap:12px;margin-bottom:22px;}
+.price-now{font-family:'Fraunces',serif;font-size:2.1rem;font-weight:600;color:var(--teal-deep);}
+.price-old{font-size:0.95rem;color:#A39C90;text-decoration:line-through;}
+.price-save{background:var(--teal-deep);color:#fff;font-size:0.68rem;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:0.03em;}
+.feat-actions{display:flex;gap:14px;}
+
+/* ===== HOW IT WORKS ===== */
+.steps-row{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  position:relative;
+}
+.step-card{padding:0 28px;position:relative;}
+.step-card:not(:first-child)::before{
+  content:'';position:absolute;left:0;top:24px;width:1px;height:calc(100% - 48px);
+  background:var(--line);
+}
+.step-num{
+  font-family:'Fraunces',serif;font-style:italic;font-size:0.95rem;
+  color:var(--terracotta-deep);font-weight:600;margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+}
+.step-num::after{content:'';flex:1;height:1px;background:var(--line);}
+.step-title{font-weight:600;font-size:1.02rem;color:var(--teal-deep);margin-bottom:10px;font-family:'Fraunces',serif;}
+.step-text{font-size:0.85rem;color:var(--ink-soft);line-height:1.7;}
+
+/* ===== TESTIMONIALS ===== */
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.review-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:28px 26px;display:flex;flex-direction:column;gap:16px;
+}
+.review-stars{color:var(--terracotta-deep);font-size:0.9rem;letter-spacing:2px;}
+.review-text{font-size:0.86rem;color:var(--ink-soft);line-height:1.7;}
+.review-foot{display:flex;align-items:center;gap:12px;}
+.review-avatar{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--sage);color:var(--teal-deep);font-family:'Fraunces',serif;font-weight:600;
+  display:flex;align-items:center;justify-content:center;font-size:0.85rem;
+}
+.review-name{font-size:0.82rem;font-weight:600;color:var(--ink);}
+.review-loc{font-size:0.72rem;color:var(--ink-soft);}
+
+/* ===== NEWSLETTER / CTA ===== */
+.cta-band{
+  background:var(--teal-deep);
+  padding:64px 40px;
+  text-align:center;
+}
+.cta-band h2{
+  font-family:'Fraunces',serif;color:#fff;font-size:clamp(1.7rem,3vw,2.3rem);
+  font-weight:600;margin-bottom:14px;
+}
+.cta-band h2 em{color:var(--terracotta);font-style:italic;}
+.cta-band p{color:rgba(255,255,255,0.72);font-size:0.9rem;margin-bottom:30px;}
+.cta-form{display:flex;max-width:420px;margin:0 auto;gap:10px;}
+.cta-form input{
+  flex:1;padding:14px 18px;border-radius:8px;border:none;
+  font-family:'Inter',sans-serif;font-size:0.86rem;
+}
+.cta-form button{
+  background:var(--terracotta-deep);color:#fff;border:none;cursor:pointer;
+  padding:14px 26px;border-radius:8px;font-weight:600;font-size:0.86rem;
+  transition:background .2s;white-space:nowrap;
+}
+.cta-form button:hover{background:#9C5240;}
+
+/* ===== FOOTER ===== */
+.footer{background:var(--ivory-deep);padding:56px 40px 28px;border-top:1px solid var(--line);}
+.footer-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;}
+.footer-brand .logo{margin-bottom:14px;}
+.footer-brand p{font-size:0.82rem;color:var(--ink-soft);line-height:1.7;max-width:260px;}
+.footer-col h4{font-size:0.78rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:16px;}
+.footer-col a{display:block;font-size:0.84rem;color:var(--ink-soft);margin-bottom:11px;}
+.footer-col a:hover{color:var(--terracotta-deep);}
+.footer-bottom{
+  max-width:1240px;margin:40px auto 0;padding-top:24px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;
+}
+.footer-bottom span{font-size:0.76rem;color:var(--ink-soft);}
+.payment-icons{display:flex;gap:8px;}
+.payment-icons div{
+  width:38px;height:24px;border-radius:4px;background:#fff;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;color:var(--ink-soft);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;min-height:auto;gap:40px;}
+  .hero-visual{order:-1;height:340px;}
+  .benefits-grid{grid-template-columns:repeat(2,1fr);}
+  .feat-grid{grid-template-columns:1fr;gap:40px;}
+  .feat-visual{order:-1;}
+  .steps-row{grid-template-columns:1fr;gap:36px;}
+  .step-card::before{display:none;}
+  .reviews-grid{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:640px){
+  .header{padding:14px 20px;}
+  .nav{display:none;}
+  .hero{padding:0 20px;}
+  .hero-grid{padding:36px 0;}
+  .section{padding:56px 20px;}
+  .benefits-grid{grid-template-columns:1fr;}
+  .trust-strip{padding:16px 20px;}
+  .trust-inner{justify-content:flex-start;gap:16px;}
+  .cta-form{flex-direction:column;}
+  .footer{padding:40px 20px 24px;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:28px;}
+  .chip-1,.chip-2,.chip-3{display:none;}
+  .price-row{flex-wrap:wrap;}
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT -->
+<div class="announce">Envíos a toda Colombia <span>Pago contra entrega</span> Compra 100% segura</div>
+
+<!-- HEADER -->
+<header class="header">
+  <a href="index.html" class="logo"><span class="mark"></span>ISBELL</a>
+  <nav class="nav">
+    <a href="index.html">Inicio</a>
+    <a href="index.html#producto">Catálogo</a>
+    <a href="index.html#beneficios">Beneficios</a>
+    <a href="isbell-product-page.html#reviews">Opiniones</a>
+    <a href="#">Contacto</a>
+  </nav>
+  <div class="header-icons">
+    <span class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span>
+    <span class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 21a8 8 0 10-16 0"/><circle cx="12" cy="7" r="4"/></svg></span>
+    <span class="icon-btn cart-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h2l2.4 12.2a2 2 0 002 1.8h7.2a2 2 0 002-1.8L19 8H6"/><circle cx="9" cy="21" r="1"/><circle cx="17" cy="21" r="1"/></svg></span>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Colágeno hidrolizado premium</div>
+      <h1>Tu piel, cabello<br>y uñas, <em>renovados</em><br>desde adentro.</h1>
+      <p class="lead">Collagen Neocell combina colágeno hidrolizado con vitamina C para nutrir tu cuerpo desde la raíz. Resultados reales en semanas, no promesas vacías.</p>
+      <div class="hero-cta-row">
+        <a href="#producto" class="btn-primary">Comprar ahora — $89.900</a>
+        <a href="#beneficios" class="btn-ghost">Conocer beneficios</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><b>4.9★</b><span>Calificación promedio</span></div>
+        <div class="hero-stat"><b>+2.300</b><span>Clientas felices</span></div>
+        <div class="hero-stat"><b>30 días</b><span>Garantía de satisfacción</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="visual-ring">
+        <div class="jar">
+          <div class="jar-lid"></div>
+          <div class="jar-body">
+            <div class="jar-label">
+              <span class="brand">ISBELL</span>
+              <span class="sub">Collagen Neocell</span>
+              <span class="badge-row"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+            </div>
+            <span class="jar-base-text">10g · Vitamina C</span>
+          </div>
+        </div>
+      </div>
+      <div class="float-chip chip-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>100% Natural</div>
+      <div class="float-chip chip-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>+2.300 reseñas</div>
+      <div class="float-chip chip-3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>Pago seguro</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h3l3 4v5h-6"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="17.5" cy="18.5" r="2.5"/></svg>Envío a toda Colombia</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M2 11h20"/><path d="M6 15h4"/></svg>Pago contra entrega</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg>Compra 100% segura</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Garantía de 30 días</div>
+  </div>
+</div>
+
+<!-- BENEFITS -->
+<section class="section" id="beneficios">
+  <div class="section-inner">
+    <div class="section-head center">
+      <p class="eyebrow">¿Por qué Collagen Neocell?</p>
+      <h2 class="section-title">Una fórmula, cuatro resultados visibles</h2>
+      <p class="section-body">Colágeno hidrolizado tipo I y III combinado con vitamina C para máxima absorción y resultados reales.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.5-7-10a5 5 0 019-3 5 5 0 019 3c0 5.5-7 10-7 10z"/></svg></div>
+        <div class="benefit-title">Piel más firme</div>
+        <p class="benefit-text">Mejora la elasticidad y reduce líneas de expresión con el uso constante.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 18c0-5 3-8 8-8s8 3 8 8"/><path d="M12 10V4"/><path d="M9 6l3-2 3 2"/></svg></div>
+        <div class="benefit-title">Cabello más fuerte</div>
+        <p class="benefit-text">Nutre el folículo desde adentro, reduciendo la caída y fortaleciendo cada hebra.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11V7a3 3 0 016 0v4"/><rect x="5" y="11" width="14" height="9" rx="2"/></svg></div>
+        <div class="benefit-title">Uñas saludables</div>
+        <p class="benefit-text">Previene la fragilidad y acelera el crecimiento de uñas más resistentes.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <div class="benefit-title">Articulaciones</div>
+        <p class="benefit-text">Apoya la movilidad y comodidad articular en tu día a día.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCT -->
+<section class="section feat-section" id="producto">
+  <div class="section-inner">
+    <div class="feat-grid">
+      <div class="feat-visual">
+        <span class="feat-tag">Más vendido</span>
+        <div class="jar">
+          <div class="jar-lid"></div>
+          <div class="jar-body">
+            <div class="jar-label">
+              <span class="brand">ISBELL</span>
+              <span class="sub">Collagen Neocell</span>
+              <span class="badge-row"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+            </div>
+            <span class="jar-base-text">10g · Vitamina C</span>
+          </div>
+        </div>
+      </div>
+      <div class="feat-content">
+        <p class="eyebrow">Producto estrella</p>
+        <h2>Collagen Neocell</h2>
+        <p class="desc">Colágeno hidrolizado de absorción rápida enriquecido con vitamina C. Una fórmula diseñada para nutrir tu piel, cabello y uñas desde el primer mes de uso constante.</p>
+        <ul class="feat-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>10g de colágeno hidrolizado por porción</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Enriquecido con vitamina C para mejor absorción</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Sin sabor, se disuelve fácilmente en líquidos fríos o calientes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Libre de gluten y sin azúcar añadida</li>
+        </ul>
+        <div class="price-row">
+          <span class="price-now">$89.900</span>
+          <span class="price-old">$119.900</span>
+          <span class="price-save">Ahorras 25%</span>
+        </div>
+        <div class="feat-actions">
+          <a href="isbell-product-page.html" class="btn-primary">Agregar al carrito</a>
+          <a href="isbell-product-page.html" class="btn-ghost">Ver detalles</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-head center">
+      <p class="eyebrow">Modo de uso</p>
+      <h2 class="section-title">Tan fácil como tres pasos</h2>
+    </div>
+    <div class="steps-row">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title">Mezcla</div>
+        <p class="step-text">Disuelve una porción en agua, jugo o tu bebida favorita, fría o caliente.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title">Consume a diario</div>
+        <p class="step-text">Toma una porción al día, idealmente en la mañana, para mantener niveles constantes.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title">Nota el cambio</div>
+        <p class="step-text">Con uso constante por 4–6 semanas, notarás piel más firme y cabello más fuerte.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" style="background:var(--ivory-deep);">
+  <div class="section-inner">
+    <div class="section-head center">
+      <p class="eyebrow">Lo que dicen nuestras clientas</p>
+      <h2 class="section-title">Resultados que hablan por sí solos</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Empecé a notar mi piel más firme después de un mes. El sabor es neutro y se mezcla súper fácil con mi café."</p>
+        <div class="review-foot">
+          <div class="review-avatar">M</div>
+          <div><div class="review-name">Mariana G.</div><div class="review-loc">Bogotá, Colombia</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Mis uñas se rompían constantemente. Después de 6 semanas con Collagen Neocell, crecen más fuertes y rápido."</p>
+        <div class="review-foot">
+          <div class="review-avatar">C</div>
+          <div><div class="review-name">Camila R.</div><div class="review-loc">Medellín, Colombia</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Llegó rápido y el pago contra entrega me dio mucha confianza para comprar por primera vez. Ya pedí mi segundo frasco."</p>
+        <div class="review-foot">
+          <div class="review-avatar">L</div>
+          <div><div class="review-name">Laura P.</div><div class="review-loc">Cali, Colombia</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / NEWSLETTER -->
+<section class="cta-band">
+  <h2>Suscríbete y recibe <em>bonos sorpresa</em></h2>
+  <p>Promociones exclusivas, tips de bienestar y acceso anticipado a nuevos productos.</p>
+  <form class="cta-form">
+    <input type="email" placeholder="Tu correo electrónico">
+    <button type="submit">Suscribirme</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo"><span class="mark"></span>ISBELL</a>
+      <p>Productos seleccionados para hacer tu día más fácil. Bienestar real, respaldado por ingredientes que funcionan.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Tienda</h4>
+      <a href="index.html">Inicio</a>
+      <a href="isbell-product-page.html">Catálogo</a>
+      <a href="isbell-product-page.html">Más vendidos</a>
+      <a href="isbell-product-page.html">Ofertas</a>
+    </div>
+    <div class="footer-col">
+      <h4>Ayuda</h4>
+      <a href="#">Contacto</a>
+      <a href="#">Envíos</a>
+      <a href="#">Cambios y devoluciones</a>
+      <a href="#">Preguntas frecuentes</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Política de privacidad</a>
+      <a href="#">Términos de servicio</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ISBELL. Todos los derechos reservados.</span>
+    <div class="payment-icons">
+      <div>VISA</div><div>MC</div><div>PSE</div><div>PayPal</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

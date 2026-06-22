@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collagen Neocell — ISBELL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#FAF6F1;
+  --ivory-deep:#F1E9DF;
+  --teal:#1F4D47;
+  --teal-deep:#143632;
+  --terracotta:#C97B63;
+  --terracotta-deep:#B0644C;
+  --sage:#E8EDE4;
+  --ink:#1C1C1A;
+  --ink-soft:#5B5650;
+  --line:#E2D9CC;
+  --radius:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--ivory);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+
+/* ===== ANNOUNCEMENT + HEADER (same as homepage) ===== */
+.announce{background:var(--teal-deep);color:#fff;text-align:center;font-size:0.74rem;font-weight:500;letter-spacing:0.03em;padding:9px 16px;}
+.announce span{color:var(--terracotta-deep);background:#fff;border-radius:20px;padding:1px 8px;font-weight:600;margin:0 2px;}
+.header{background:var(--ivory);border-bottom:1px solid var(--line);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
+.logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.5rem;letter-spacing:0.06em;color:var(--teal-deep);display:flex;align-items:center;gap:10px;}
+.logo .mark{width:30px;height:30px;border-radius:50%;background:var(--teal-deep);display:flex;align-items:center;justify-content:center;position:relative;}
+.logo .mark::before{content:'';width:9px;height:9px;border-radius:50%;background:var(--terracotta);position:absolute;top:6px;left:7px;}
+.logo .mark::after{content:'';width:9px;height:9px;border-radius:50%;background:#fff;position:absolute;bottom:6px;right:7px;}
+.nav{display:flex;gap:36px;align-items:center;}
+.nav a{font-size:0.86rem;font-weight:500;color:var(--ink);transition:color .15s;}
+.nav a:hover{color:var(--terracotta-deep);}
+.header-icons{display:flex;gap:20px;align-items:center;}
+.icon-btn{width:20px;height:20px;color:var(--ink);cursor:pointer;}
+.icon-btn svg{width:100%;height:100%;}
+.cart-badge{position:relative;}
+.cart-badge::after{content:'1';position:absolute;top:-7px;right:-8px;background:var(--terracotta-deep);color:#fff;font-size:0.6rem;font-weight:700;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+
+/* ===== BREADCRUMB ===== */
+.breadcrumb{
+  max-width:1240px;margin:0 auto;padding:24px 40px 0;
+  font-size:0.78rem;color:var(--ink-soft);
+  display:flex;gap:8px;align-items:center;
+}
+.breadcrumb a{color:var(--ink-soft);}
+.breadcrumb a:hover{color:var(--terracotta-deep);}
+.breadcrumb .sep{opacity:0.5;}
+.breadcrumb .current{color:var(--teal-deep);font-weight:600;}
+
+/* ===== PRODUCT MAIN ===== */
+.product-main{max-width:1240px;margin:0 auto;padding:32px 40px 0;}
+.product-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;
+}
+
+/* --- Gallery --- */
+.gallery{display:flex;flex-direction:column;gap:16px;}
+.gallery-main{
+  background:#fff;border-radius:var(--radius);
+  display:flex;align-items:center;justify-content:center;
+  height:460px;position:relative;
+  box-shadow:0 16px 40px -16px rgba(31,77,71,0.12);
+  border:1px solid var(--line);
+}
+.gallery-badge{
+  position:absolute;top:20px;left:20px;
+  background:var(--terracotta-deep);color:#fff;
+  font-size:0.68rem;font-weight:700;letter-spacing:0.03em;
+  padding:6px 14px;border-radius:20px;
+}
+.gallery-fav{
+  position:absolute;top:20px;right:20px;
+  width:38px;height:38px;border-radius:50%;background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 14px rgba(0,0,0,0.1);cursor:pointer;
+}
+.gallery-fav svg{width:18px;height:18px;color:var(--terracotta-deep);}
+.gallery-thumbs{display:flex;gap:12px;}
+.thumb{
+  width:84px;height:84px;border-radius:10px;background:#fff;
+  border:2px solid var(--line);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:border-color .15s;
+}
+.thumb.active{border-color:var(--terracotta-deep);}
+.thumb:hover{border-color:var(--teal);}
+.thumb .mini-jar{width:24px;}
+.thumb .mini-lid{width:26px;height:8px;background:var(--teal-deep);border-radius:3px 3px 1px 1px;margin:0 auto;}
+.thumb .mini-body{width:24px;height:32px;margin:-1px auto 0;background:#fff;border:1px solid #eee;border-radius:2px;position:relative;}
+.thumb .mini-body::after{content:'';position:absolute;top:6px;left:2px;right:2px;height:14px;background:var(--teal-deep);border-radius:1px;}
+
+/* product jar illustration (large) */
+.jar-display{position:relative;}
+.jar-lid-l{width:200px;height:54px;background:linear-gradient(180deg,#2A5C54,var(--teal-deep));border-radius:16px 16px 4px 4px;margin:0 auto;position:relative;z-index:2;box-shadow:0 4px 10px rgba(0,0,0,0.15);}
+.jar-lid-l::after{content:'';position:absolute;top:7px;left:50%;transform:translateX(-50%);width:70px;height:3px;background:rgba(255,255,255,0.25);border-radius:3px;}
+.jar-body-l{width:190px;height:250px;margin:-6px auto 0;background:linear-gradient(160deg,#ffffff 0%, #f4f4f4 50%, #ffffff 100%);border-radius:10px;position:relative;z-index:1;box-shadow:0 22px 46px -12px rgba(0,0,0,0.18), inset 0 0 0 1px rgba(0,0,0,0.04);overflow:hidden;}
+.jar-label-l{position:absolute;top:44px;left:10px;right:10px;bottom:54px;background:var(--teal-deep);border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:14px;}
+.jar-label-l .brand{font-family:'Fraunces',serif;color:#fff;font-size:1.2rem;font-weight:600;letter-spacing:0.04em;}
+.jar-label-l .sub{color:var(--terracotta);font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
+.jar-label-l .badge-row{display:flex;gap:5px;margin-top:8px;}
+.jar-label-l .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.4);}
+.jar-base-text-l{position:absolute;bottom:18px;left:0;right:0;text-align:center;font-size:0.58rem;color:#999;letter-spacing:0.06em;font-weight:600;}
+
+/* --- Info column --- */
+.product-info{display:flex;flex-direction:column;}
+.brand-tag{font-size:0.74rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--terracotta-deep);margin-bottom:10px;}
+.product-title{font-family:'Fraunces',serif;font-size:clamp(1.9rem,3vw,2.5rem);font-weight:600;color:var(--teal-deep);line-height:1.15;margin-bottom:14px;}
+.rating-row{display:flex;align-items:center;gap:10px;margin-bottom:22px;}
+.rating-stars{color:var(--terracotta-deep);font-size:0.95rem;letter-spacing:1px;}
+.rating-count{font-size:0.8rem;color:var(--ink-soft);}
+.rating-count a{text-decoration:underline;}
+
+.price-block{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;}
+.price-current{font-family:'Fraunces',serif;font-size:2.3rem;font-weight:600;color:var(--teal-deep);}
+.price-compare{font-size:1.05rem;color:#A39C90;text-decoration:line-through;}
+.price-save-tag{background:var(--teal-deep);color:#fff;font-size:0.7rem;font-weight:700;padding:4px 11px;border-radius:20px;}
+.tax-note{font-size:0.78rem;color:var(--ink-soft);margin-bottom:26px;}
+
+.short-desc{font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:28px;max-width:480px;}
+
+/* Quantity + Add to cart */
+.purchase-row{display:flex;gap:14px;margin-bottom:16px;}
+.qty-selector{
+  display:flex;align-items:center;border:1.5px solid var(--line);border-radius:8px;
+  overflow:hidden;background:#fff;
+}
+.qty-btn{
+  width:42px;height:52px;background:none;border:none;cursor:pointer;
+  font-size:1.1rem;color:var(--teal-deep);font-weight:600;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s;
+}
+.qty-btn:hover{background:var(--sage);}
+.qty-value{width:44px;text-align:center;font-weight:600;font-size:0.95rem;color:var(--ink);}
+.btn-add-cart{
+  flex:1;background:var(--teal-deep);color:#fff;border:none;cursor:pointer;
+  font-family:'Inter',sans-serif;font-weight:700;font-size:0.92rem;
+  border-radius:8px;letter-spacing:0.02em;
+  transition:background .2s, transform .15s;
+}
+.btn-add-cart:hover{background:var(--teal);transform:translateY(-1px);}
+.btn-buy-now{
+  width:100%;background:var(--terracotta-deep);color:#fff;border:none;cursor:pointer;
+  font-family:'Inter',sans-serif;font-weight:700;font-size:0.92rem;
+  padding:17px;border-radius:8px;letter-spacing:0.02em;margin-bottom:24px;
+  transition:background .2s;
+}
+.btn-buy-now:hover{background:#9C5240;}
+
+/* Trust badges row */
+.pdp-trust{display:flex;flex-wrap:wrap;gap:18px;padding:20px 0;border-top:1px solid var(--line);margin-bottom:24px;}
+.pdp-trust-item{display:flex;align-items:center;gap:9px;font-size:0.78rem;color:var(--ink-soft);font-weight:500;}
+.pdp-trust-item svg{width:18px;height:18px;color:var(--terracotta-deep);flex-shrink:0;}
+
+/* Accordion */
+.accordion{border-top:1px solid var(--line);}
+.accordion-item{border-bottom:1px solid var(--line);}
+.accordion-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 2px;cursor:pointer;font-weight:600;font-size:0.9rem;color:var(--teal-deep);
+}
+.accordion-head svg{width:16px;height:16px;color:var(--terracotta-deep);transition:transform .25s;flex-shrink:0;}
+.accordion-item.open .accordion-head svg{transform:rotate(45deg);}
+.accordion-body{
+  font-size:0.84rem;color:var(--ink-soft);line-height:1.75;
+  max-height:0;overflow:hidden;transition:max-height .35s ease;
+}
+.accordion-item.open .accordion-body{max-height:300px;padding-bottom:18px;}
+
+/* ===== SUPPLEMENT FACTS ===== */
+.section{padding:80px 40px;}
+.section-inner{max-width:1240px;margin:0 auto;}
+.section-head{max-width:560px;margin-bottom:48px;}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+.eyebrow{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--terracotta-deep);margin-bottom:12px;}
+.section-title{font-family:'Fraunces',serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:600;color:var(--teal-deep);line-height:1.15;margin-bottom:14px;}
+.section-body{font-size:0.92rem;color:var(--ink-soft);line-height:1.7;}
+
+.facts-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+.facts-table{background:#fff;border:1.5px solid var(--teal-deep);border-radius:10px;overflow:hidden;}
+.facts-table-head{background:var(--teal-deep);color:#fff;padding:16px 22px;}
+.facts-table-head b{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;display:block;}
+.facts-table-head span{font-size:0.76rem;opacity:0.85;}
+.facts-row{display:flex;justify-content:space-between;padding:13px 22px;border-bottom:1px solid var(--line);font-size:0.86rem;}
+.facts-row.head-row{font-weight:700;border-bottom:2px solid var(--teal-deep);background:var(--sage);}
+.facts-row span:last-child{color:var(--ink-soft);}
+.facts-row.head-row span{color:var(--ink);}
+
+.ing-list{display:flex;flex-direction:column;gap:18px;}
+.ing-item{display:flex;gap:16px;align-items:flex-start;}
+.ing-icon{width:42px;height:42px;border-radius:10px;background:var(--sage);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ing-icon svg{width:20px;height:20px;color:var(--teal-deep);}
+.ing-name{font-weight:600;font-size:0.9rem;color:var(--teal-deep);margin-bottom:4px;}
+.ing-text{font-size:0.82rem;color:var(--ink-soft);line-height:1.6;}
+
+/* ===== REVIEWS ===== */
+.reviews-summary{display:flex;gap:48px;align-items:center;margin-bottom:44px;flex-wrap:wrap;}
+.rs-score{text-align:center;}
+.rs-score b{font-family:'Fraunces',serif;font-size:3rem;color:var(--teal-deep);font-weight:600;display:block;line-height:1;}
+.rs-score .stars{color:var(--terracotta-deep);font-size:1rem;margin:8px 0 4px;letter-spacing:2px;}
+.rs-score span{font-size:0.78rem;color:var(--ink-soft);}
+.rs-bars{flex:1;min-width:240px;display:flex;flex-direction:column;gap:7px;}
+.rs-bar-row{display:flex;align-items:center;gap:10px;font-size:0.78rem;color:var(--ink-soft);}
+.rs-bar-row .label{width:46px;}
+.rs-bar-track{flex:1;height:7px;background:var(--line);border-radius:6px;overflow:hidden;}
+.rs-bar-fill{height:100%;background:var(--terracotta-deep);border-radius:6px;}
+.rs-bar-row .count{width:30px;text-align:right;}
+
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.review-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;display:flex;flex-direction:column;gap:14px;}
+.review-stars{color:var(--terracotta-deep);font-size:0.88rem;letter-spacing:2px;}
+.review-text{font-size:0.85rem;color:var(--ink-soft);line-height:1.7;}
+.review-foot{display:flex;align-items:center;gap:11px;}
+.review-avatar{width:36px;height:36px;border-radius:50%;background:var(--sage);color:var(--teal-deep);font-family:'Fraunces',serif;font-weight:600;display:flex;align-items:center;justify-content:center;font-size:0.82rem;}
+.review-name{font-size:0.8rem;font-weight:600;color:var(--ink);}
+.review-verified{font-size:0.68rem;color:#3F8F6E;font-weight:600;display:flex;align-items:center;gap:4px;}
+
+/* ===== RELATED ===== */
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.related-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:box-shadow .2s, transform .2s;}
+.related-card:hover{transform:translateY(-3px);box-shadow:0 14px 32px -14px rgba(31,77,71,0.18);}
+.related-visual{height:200px;background:var(--sage);display:flex;align-items:center;justify-content:center;}
+.related-visual .jar{transform:scale(0.55);}
+.related-body{padding:18px 20px;}
+.related-name{font-weight:600;font-size:0.92rem;color:var(--teal-deep);margin-bottom:6px;font-family:'Fraunces',serif;}
+.related-price{font-size:0.88rem;color:var(--ink-soft);}
+
+/* ===== STICKY ADD-TO-CART BAR ===== */
+.sticky-atc{
+  position:fixed;bottom:0;left:0;right:0;z-index:60;
+  background:#fff;border-top:1px solid var(--line);
+  box-shadow:0 -8px 24px rgba(0,0,0,0.06);
+  padding:14px 40px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  transform:translateY(100%);transition:transform .3s ease;
+}
+.sticky-atc.visible{transform:translateY(0);}
+.sticky-atc-info{display:flex;align-items:center;gap:14px;}
+.sticky-mini-jar{width:30px;height:38px;background:#fff;border:1px solid var(--line);border-radius:4px;position:relative;flex-shrink:0;}
+.sticky-mini-jar::before{content:'';position:absolute;top:0;left:0;right:0;height:10px;background:var(--teal-deep);border-radius:4px 4px 0 0;}
+.sticky-name{font-weight:600;font-size:0.86rem;color:var(--teal-deep);}
+.sticky-price{font-size:0.8rem;color:var(--ink-soft);}
+.sticky-atc button{
+  background:var(--teal-deep);color:#fff;border:none;cursor:pointer;
+  font-family:'Inter',sans-serif;font-weight:700;font-size:0.85rem;
+  padding:13px 30px;border-radius:8px;white-space:nowrap;
+  transition:background .2s;
+}
+.sticky-atc button:hover{background:var(--teal);}
+
+/* ===== FOOTER (same as homepage) ===== */
+.footer{background:var(--ivory-deep);padding:56px 40px 100px;border-top:1px solid var(--line);margin-top:20px;}
+.footer-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;}
+.footer-brand .logo{margin-bottom:14px;}
+.footer-brand p{font-size:0.82rem;color:var(--ink-soft);line-height:1.7;max-width:260px;}
+.footer-col h4{font-size:0.78rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:16px;}
+.footer-col a{display:block;font-size:0.84rem;color:var(--ink-soft);margin-bottom:11px;}
+.footer-col a:hover{color:var(--terracotta-deep);}
+.footer-bottom{max-width:1240px;margin:40px auto 0;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+.footer-bottom span{font-size:0.76rem;color:var(--ink-soft);}
+.payment-icons{display:flex;gap:8px;}
+.payment-icons div{width:38px;height:24px;border-radius:4px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;color:var(--ink-soft);}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:980px){
+  .product-grid{grid-template-columns:1fr;gap:36px;}
+  .facts-grid{grid-template-columns:1fr;gap:36px;}
+  .reviews-grid{grid-template-columns:1fr;}
+  .related-grid{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:640px){
+  .header{padding:14px 20px;}
+  .nav{display:none;}
+  .breadcrumb,.product-main{padding-left:20px;padding-right:20px;}
+  .section{padding:48px 20px;}
+  .gallery-main{height:340px;}
+  .jar-lid-l{width:150px;height:42px;}
+  .jar-body-l{width:142px;height:188px;}
+  .purchase-row{flex-direction:column;}
+  .qty-selector{justify-content:center;}
+  .reviews-summary{flex-direction:column;align-items:flex-start;gap:20px;}
+  .sticky-atc{padding:12px 16px;}
+  .sticky-name{font-size:0.78rem;}
+  .footer{padding:40px 20px 100px;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:28px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT -->
+<div class="announce">Envíos a toda Colombia <span>Pago contra entrega</span> Compra 100% segura</div>
+
+<!-- HEADER -->
+<header class="header">
+  <a href="index.html" class="logo"><span class="mark"></span>ISBELL</a>
+  <nav class="nav">
+    <a href="index.html">Inicio</a>
+    <a href="index.html#producto">Catálogo</a>
+    <a href="index.html#beneficios">Beneficios</a>
+    <a href="#reviews">Opiniones</a>
+    <a href="#">Contacto</a>
+  </nav>
+  <div class="header-icons">
+    <span class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span>
+    <span class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 21a8 8 0 10-16 0"/><circle cx="12" cy="7" r="4"/></svg></span>
+    <span class="icon-btn cart-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h2l2.4 12.2a2 2 0 002 1.8h7.2a2 2 0 002-1.8L19 8H6"/><circle cx="9" cy="21" r="1"/><circle cx="17" cy="21" r="1"/></svg></span>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Inicio</a><span class="sep">/</span><a href="index.html#producto">Catálogo</a><span class="sep">/</span><span class="current">Collagen Neocell</span>
+</div>
+
+<!-- PRODUCT MAIN -->
+<div class="product-main">
+  <div class="product-grid">
+
+    <!-- GALLERY -->
+    <div class="gallery">
+      <div class="gallery-main">
+        <span class="gallery-badge">Más vendido</span>
+        <span class="gallery-fav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 8.6c0 4.4-8.8 10.6-8.8 10.6S3.2 13 3.2 8.6a4.6 4.6 0 018.8-2 4.6 4.6 0 018.8 2z"/></svg></span>
+        <div class="jar-display">
+          <div class="jar-lid-l"></div>
+          <div class="jar-body-l">
+            <div class="jar-label-l">
+              <span class="brand">ISBELL</span>
+              <span class="sub">Collagen Neocell</span>
+              <span class="badge-row"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+            </div>
+            <span class="jar-base-text-l">10g · Vitamina C · 30 porciones</span>
+          </div>
+        </div>
+      </div>
+      <div class="gallery-thumbs">
+        <div class="thumb active"><div class="mini-jar"><div class="mini-lid"></div><div class="mini-body"></div></div></div>
+        <div class="thumb"><div class="mini-jar"><div class="mini-lid"></div><div class="mini-body"></div></div></div>
+        <div class="thumb"><div class="mini-jar"><div class="mini-lid"></div><div class="mini-body"></div></div></div>
+      </div>
+    </div>
+
+    <!-- INFO -->
+    <div class="product-info">
+      <p class="brand-tag">ISBELL · Colágeno Premium</p>
+      <h1 class="product-title">Collagen Neocell</h1>
+      <div class="rating-row">
+        <span class="rating-stars">★★★★★</span>
+        <span class="rating-count">4.9 de 5 · <a href="#reviews">186 reseñas</a></span>
+      </div>
+
+      <div class="price-block">
+        <span class="price-current">$89.900</span>
+        <span class="price-compare">$119.900</span>
+        <span class="price-save-tag">Ahorras 25%</span>
+      </div>
+      <p class="tax-note">Impuestos incluidos. Envío calculado al finalizar la compra.</p>
+
+      <p class="short-desc">Colágeno hidrolizado tipo I y III enriquecido con vitamina C para máxima absorción. Sin sabor, sin azúcar añadida, fácil de disolver en cualquier bebida fría o caliente.</p>
+
+      <div class="purchase-row">
+        <div class="qty-selector">
+          <button class="qty-btn">−</button>
+          <span class="qty-value">1</span>
+          <button class="qty-btn">+</button>
+        </div>
+        <button class="btn-add-cart">Agregar al carrito</button>
+      </div>
+      <button class="btn-buy-now">Comprar ahora</button>
+
+      <div class="pdp-trust">
+        <div class="pdp-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h3l3 4v5h-6"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="17.5" cy="18.5" r="2.5"/></svg>Envío 2–5 días</div>
+        <div class="pdp-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M2 11h20"/></svg>Pago contra entrega</div>
+        <div class="pdp-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Garantía 30 días</div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-item open">
+          <div class="accordion-head" onclick="toggleAcc(this)">Modo de uso<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+          <div class="accordion-body">Mezcla una porción (un cucharón incluido) en 250ml de agua, jugo o tu bebida favorita. Toma una porción al día, preferiblemente en la mañana, para mantener niveles constantes en el organismo.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-head" onclick="toggleAcc(this)">Ingredientes<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+          <div class="accordion-body">Colágeno hidrolizado bovino tipo I y III (10g), vitamina C (ácido ascórbico). Libre de gluten, lácteos y azúcar añadida. No contiene colorantes ni saborizantes artificiales.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-head" onclick="toggleAcc(this)">Envíos y devoluciones<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+          <div class="accordion-body">Realizamos envíos a toda Colombia con tiempos de entrega de 2 a 5 días hábiles. Si no quedas satisfecha, cuentas con 30 días para solicitar tu devolución sin complicaciones.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SUPPLEMENT FACTS -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-head">
+      <p class="eyebrow">Información nutricional</p>
+      <h2 class="section-title">Qué contiene cada porción</h2>
+      <p class="section-body">Una fórmula simple y transparente — sin rellenos innecesarios.</p>
+    </div>
+    <div class="facts-grid">
+      <div class="facts-table">
+        <div class="facts-table-head">
+          <b>Datos de suplemento</b>
+          <span>Tamaño de porción: 1 cucharón (10.5g)</span>
+        </div>
+        <div class="facts-row head-row"><span>Por porción</span><span>% Valor diario*</span></div>
+        <div class="facts-row"><span>Colágeno hidrolizado (tipo I y III)</span><span>10g</span></div>
+        <div class="facts-row"><span>Vitamina C (ácido ascórbico)</span><span>60mg · 67%</span></div>
+        <div class="facts-row"><span>Calorías</span><span>35</span></div>
+        <div class="facts-row"><span>Sodio</span><span>15mg · 1%</span></div>
+        <div class="facts-row" style="border-bottom:none;"><span style="font-size:0.74rem;color:var(--ink-soft);">*Valores diarios basados en una dieta de 2.000 calorías.</span><span></span></div>
+      </div>
+      <div class="ing-list">
+        <div class="ing-item">
+          <div class="ing-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.5-7-10a5 5 0 019-3 5 5 0 019 3c0 5.5-7 10-7 10z"/></svg></div>
+          <div><div class="ing-name">Colágeno hidrolizado tipo I y III</div><p class="ing-text">Los tipos más abundantes en piel, cabello y uñas, en forma de péptidos de fácil absorción.</p></div>
+        </div>
+        <div class="ing-item">
+          <div class="ing-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l2.5 2.5"/></svg></div>
+          <div><div class="ing-name">Vitamina C</div><p class="ing-text">Esencial para la síntesis natural de colágeno en el cuerpo y la absorción del ingrediente principal.</p></div>
+        </div>
+        <div class="ing-item">
+          <div class="ing-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div><div class="ing-name">Sin azúcar añadida</div><p class="ing-text">Fórmula limpia, sin colorantes ni saborizantes artificiales, libre de gluten y lácteos.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section" style="background:var(--ivory-deep);" id="reviews">
+  <div class="section-inner">
+    <div class="section-head">
+      <p class="eyebrow">Reseñas verificadas</p>
+      <h2 class="section-title">Lo que dicen nuestras clientas</h2>
+    </div>
+    <div class="reviews-summary">
+      <div class="rs-score">
+        <b>4.9</b>
+        <div class="stars">★★★★★</div>
+        <span>186 reseñas</span>
+      </div>
+      <div class="rs-bars">
+        <div class="rs-bar-row"><span class="label">5 ★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:86%;"></div></div><span class="count">160</span></div>
+        <div class="rs-bar-row"><span class="label">4 ★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:10%;"></div></div><span class="count">19</span></div>
+        <div class="rs-bar-row"><span class="label">3 ★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:3%;"></div></div><span class="count">5</span></div>
+        <div class="rs-bar-row"><span class="label">2 ★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:1%;"></div></div><span class="count">1</span></div>
+        <div class="rs-bar-row"><span class="label">1 ★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:1%;"></div></div><span class="count">1</span></div>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Lo tomo con mi café todas las mañanas. No tiene sabor y después de 5 semanas mi piel se ve mucho más hidratada."</p>
+        <div class="review-foot">
+          <div class="review-avatar">V</div>
+          <div><div class="review-name">Valentina S.</div><div class="review-verified"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Compra verificada</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"El empaque llegó perfecto y el pago contra entrega fue súper fácil. El producto en sí es de buena calidad, se disuelve bien."</p>
+        <div class="review-foot">
+          <div class="review-avatar">D</div>
+          <div><div class="review-name">Daniela M.</div><div class="review-verified"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Compra verificada</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ya es mi tercer frasco. Mi cabello se ve más grueso y mis uñas dejaron de partirse. Totalmente recomendado."</p>
+        <div class="review-foot">
+          <div class="review-avatar">P</div>
+          <div><div class="review-name">Paula T.</div><div class="review-verified"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Compra verificada</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RELATED PRODUCTS -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-head center">
+      <p class="eyebrow">También te puede interesar</p>
+      <h2 class="section-title">Completa tu rutina de bienestar</h2>
+    </div>
+    <div class="related-grid">
+      <div class="related-card">
+        <div class="related-visual">
+          <div class="jar"><div class="jar-lid"></div><div class="jar-body"><div class="jar-label"><span class="brand">ISBELL</span><span class="sub">Biotin Plus</span></div></div></div>
+        </div>
+        <div class="related-body"><div class="related-name">Biotin Plus</div><div class="related-price">$64.900</div></div>
+      </div>
+      <div class="related-card">
+        <div class="related-visual">
+          <div class="jar"><div class="jar-lid"></div><div class="jar-body"><div class="jar-label"><span class="brand">ISBELL</span><span class="sub">Omega 3</span></div></div></div>
+        </div>
+        <div class="related-body"><div class="related-name">Omega 3 Premium</div><div class="related-price">$74.900</div></div>
+      </div>
+      <div class="related-card">
+        <div class="related-visual">
+          <div class="jar"><div class="jar-lid"></div><div class="jar-body"><div class="jar-label"><span class="brand">ISBELL</span><span class="sub">Multivit</span></div></div></div>
+        </div>
+        <div class="related-body"><div class="related-name">Multivitamínico</div><div class="related-price">$59.900</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo"><span class="mark"></span>ISBELL</a>
+      <p>Productos seleccionados para hacer tu día más fácil. Bienestar real, respaldado por ingredientes que funcionan.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Tienda</h4>
+      <a href="index.html">Inicio</a>
+      <a href="isbell-product-page.html">Catálogo</a>
+      <a href="isbell-product-page.html">Más vendidos</a>
+      <a href="isbell-product-page.html">Ofertas</a>
+    </div>
+    <div class="footer-col">
+      <h4>Ayuda</h4>
+      <a href="#">Contacto</a>
+      <a href="#">Envíos</a>
+      <a href="#">Cambios y devoluciones</a>
+      <a href="#">Preguntas frecuentes</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Política de privacidad</a>
+      <a href="#">Términos de servicio</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ISBELL. Todos los derechos reservados.</span>
+    <div class="payment-icons">
+      <div>VISA</div><div>MC</div><div>PSE</div><div>PayPal</div>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY ADD TO CART -->
+<div class="sticky-atc" id="stickyAtc">
+  <div class="sticky-atc-info">
+    <div class="sticky-mini-jar"></div>
+    <div>
+      <div class="sticky-name">Collagen Neocell</div>
+      <div class="sticky-price">$89.900 COP</div>
+    </div>
+  </div>
+  <button onclick="document.querySelector('.btn-add-cart').scrollIntoView({behavior:'smooth',block:'center'})">Agregar al carrito</button>
+</div>
+
+<script>
+function toggleAcc(el){
+  const item = el.closest('.accordion-item');
+  document.querySelectorAll('.accordion-item').forEach(i => { if(i!==item) i.classList.remove('open'); });
+  item.classList.toggle('open');
+}
+const sticky = document.getElementById('stickyAtc');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 560) sticky.classList.add('visible');
+  else sticky.classList.remove('visible');
+});
+</script>
+
+</body>
+</html>
